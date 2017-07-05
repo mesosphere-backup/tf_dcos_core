@@ -1,2 +1,2 @@
 # tf_dcos_core
-Core Module for all DC/OS Installation, Upgrading and Managability
+A Terraform module to install, upgrade, and modify nodes for DC/OS clusters.
