@@ -1,6 +1,6 @@
 # DC/OS terraform module
 
-A Terraform module to install, upgrade, and modify nodes for DC/OS clusters.
+A Terraform module to install, upgrade, and modify nodes for DC/OS clusters in an automated fashion.
 
 
 ## Module Input Variables
