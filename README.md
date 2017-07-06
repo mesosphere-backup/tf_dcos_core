@@ -74,8 +74,7 @@ Any changes to DC/OS and its configs goes through a bootstrap node where its new
 - `dcos_cluster_docker_registry_url` - The custom URL that Mesos uses to pull Docker images from. If set, it will configure the Mesos’ --docker_registry flag to the specified URL.  (optional)
 - `dcos_rexray_config` - The REX-Ray configuration method for enabling external persistent volumes in Marathon.  (optional) 
 - `dcos_ip_detect_public_contents` - Allows DC/OS to be aware of your publicly routeable address for ease of use(recommended)
-- `dcos_enable_docker_gc` - Indicates whether to run the docker-gc script, a simple Docker container and image garbage collection script, once every hour to clean up stray Docker containers. (optional)
-- `dcos_cluster_docker_registry_enabled` - 
+- `dcos_enable_docker_gc` - Indicates whether to run the docker-gc script, a simple Docker container and image garbage collection script, once every hour to clean up stray Docker containers. (optional) 
 - `dcos_staged_package_storage_uri` - Where to temporarily store DC/OS packages while they are being added. (optional)
 - `dcos_package_storage_uri` - Where to permanently store DC/OS packages. The value must be a file URL,(optional)
 
@@ -156,7 +155,6 @@ Any changes to DC/OS and its configs goes through a bootstrap node where its new
     dcos_cluster_docker_registry_url = "${var.dcos_cluster_docker_registry_url}"
     dcos_rexray_config = "${var.dcos_rexray_config}"
     dcos_ip_detect_public_contents = "${var.dcos_ip_detect_public_contents}"
-    dcos_cluster_docker_registry_enabled = "${var.dcos_cluster_docker_registry_enabled}"
     dcos_enable_docker_gc = "${var.dcos_enable_docker_gc}"
     dcos_staged_package_storage_uri = "${var.dcos_staged_package_storage_uri}"
     dcos_package_storage_uri = "${var.dcos_package_storage_uri}"
