@@ -8,16 +8,55 @@ A Terraform module to install, upgrade, and modify nodes for DC/OS clusters in a
 This long list of variables is required by DC/OS config.yaml for the bootstrap node. 
 Any changes to DC/OS and its configs goes through a bootstrap node where its new configs are sourced from DC/OS master and agents nodes. By making changes to any of these flags allows for easier deployments that are supported by http://dcos.io and http://mesosphere.com official documentation. This gives birth for automated installs and upgrades with minimal commands. 
 
+### Required Variables
+
+- `dcos_version` - specifies which dcos version instruction to use
+- `dcos_install_mode` - specifies which type of command to execute. Either `install` or `upgrade` 
+- `role` - specifies which dcos role of commands to run
 - `bootstrap_private_ip` - used for the private ip for the bootstrap url 
 - `dcos_bootstrap_port` - used to specify the port of the bootstrap url 
-- `custom_dcos_download_path` - insert location of dcos installer script (optional)
-- `dcos_agent_list` - used to list the agents in the config.yaml (optional)
-- `dcos_version` - dcos version commands to execute 
-- `dcos_audit_logging` - [Enterprise DC/OS] enable security decisions are logged for Mesos, Marathon, and Jobs. (optional)
-- `dcos_auth_cookie_secure_flag` - [Enterprise DC/OS] allow web browsers to send the DC/OS authentication cookie through a non-HTTPS connection. (optional)
+- `dcos_cluster_name ` - sets the DC/OS cluster name 
+- `dcos_master_discovery` -  The Mesos master discovery method. The available options are static or master_http_loadbalancer. (recommend the use of master_http_loadbalancer)
+
+
+### Dependency Variables
+
+- `dcos_master_list` - statically set your master nodes (not recommended but required with exhibitor_storage_backend set to static. Use aws_s3 or azure instead, that way you can replace masters in the cloud.)
+- `dcos_exhibitor_zk_hosts` - a comma-separated list of one or more ZooKeeper node IP and port addresses to use for configuring the internal Exhibitor instances. (not recommended but required with exhibitor_storage_backend set to ZooKeeper. Use aws_s3 or azure instead. Assumes external ZooKeeper is already online.)
+- `dcos_exhibitor_zk_path` - the filepath that Exhibitor uses to store data (not recommended but required with exhibitor_storage_backend set to `zookeeper`. Use `aws_s3` or `azure` instead. Assumes external ZooKeeper is already online.)
+- `dcos_num_masters` - set the num of master nodes (required with exhibitor_storage_backend set to aws_s3, azure, ZooKeeper)
+- `dcos_exhibitor_address` - The address of the load balancer in front of the masters (recommended)
+- `dcos_exhibitor_storage_backend` - options are aws_s3, azure, or zookeeper (recommended)
+- `dcos_exhibitor_explicit_keys` - set whether you are using AWS API keys to grant Exhibitor access to S3. (optional)
 - `dcos_aws_access_key_id` - the aws key ID for exhibitor storage  (optional but required with dcos_exhibitor_address)
 - `dcos_aws_region` - the aws region for exhibitor storage (optional but required with dcos_exhibitor_address)
 - `dcos_aws_secret_access_key` - the aws secret key for exhibitor storage (optional but required with dcos_exhibitor_address)
+- `dcos_exhibitor_azure_account_key` - the azure account key for exhibitor storage (optional but required with dcos_exhibitor_address)
+- `dcos_exhibitor_azure_account_name` - the azure account name for exhibitor storage (optional but required with dcos_exhibitor_address)
+- `dcos_exhibitor_azure_prefix` - the azure account name for exhibitor storage (optional but required with dcos_exhibitor_address)
+- `dcos_s3_bucket` - name of the s3 bucket for the exhibitor backend (recommended but required with dcos_exhibitor_address)
+- `dcos_s3_prefix` - name of the s3 prefix for the exhibitor backend (recommended but required with dcos_exhibitor_address)
+
+
+### Recommended Variables
+
+- `dcos_resolvers ` - A YAML nested list (-) of DNS resolvers for your DC/OS cluster nodes. (recommended)
+- `dcos_ip_detect_public_contents` - Allows DC/OS to be aware of your publicly routeable address for ease of use (recommended)
+- `dcos_security ` - [Enterprise DC/OS] set the security level of DC/OS. Default is permissive. (recommended)
+- `dcos_superuser_password_hash` - [Enterprise DC/OS] set the superuser password hash (recommended)
+- `dcos_superuser_username` - [Enterprise DC/OS] set the superuser username (recommended)
+- `dcos_zk_agent_credentials` - [Enterprise DC/OS] set the ZooKeeper agent credentials (recommended) 
+- `dcos_zk_master_credentials` - [Enterprise DC/OS] set the ZooKeeper master credentials (recommended)
+- `dcos_zk_super_credentials` - [Enterprise DC/OS] set the zk super credentials (recommended) 
+
+
+### Optional Variables
+
+- `dcos_dns_search` - A space-separated list of domains that are tried when an unqualified domain is entered. (optional)
+- `custom_dcos_download_path` - insert location of dcos installer script (optional)
+- `dcos_agent_list` - used to list the agents in the config.yaml (optional)
+- `dcos_audit_logging` - [Enterprise DC/OS] enable security decisions are logged for Mesos, Marathon, and Jobs. (optional)
+- `dcos_auth_cookie_secure_flag` - [Enterprise DC/OS] allow web browsers to send the DC/OS authentication cookie through a non-HTTPS connection. (optional)
 - `dcos_aws_template_storage_access_key_id` - the aws key ID for CloudFormation template storage (optional)
 - `dcos_aws_template_storage_bucket` - the aws CloudFormation bucket name (optional)
 - `dcos_aws_template_storage_bucket_path` - the aws CloudFormation bucket path (optional)
@@ -29,55 +68,31 @@ Any changes to DC/OS and its configs goes through a bootstrap node where its new
 - `dcos_cluster_docker_credentials` - The dictionary of Docker credentials to pass. (optional)
 - `dcos_cluster_docker_credentials_dcos_owned` - Indicates whether to store the credentials file in /opt/mesosphere or /etc/mesosphere/docker_credentials. A sysadmin cannot edit /opt/mesosphere directly (optional)
 - `dcos_cluster_docker_credentials_enabled` - Indicates whether to pass the Mesos --docker_config option to Mesos. (optional)
-- `dcos_cluster_docker_credentials_write_to_etc` - Indicates whether to write a cluster credentials file.
-- `dcos_cluster_name ` - sets the DC/OS cluster name 
+- `dcos_cluster_docker_credentials_write_to_etc` - Indicates whether to write a cluster credentials file. (optional)
 - `dcos_customer_key` - [Enterprise DC/OS] sets the customer key (optional)
-- `dcos_dns_search` - A space-separated list of domains that are tried when an unqualified domain is entered 
 - `dcos_docker_remove_delay` - The amount of time to wait before removing stale Docker images stored on the agent nodes and the Docker image generated by the installer. (optional)
-- `dcos_exhibitor_address` - The address of the load balancer in front of the masters (recommended)
-- `dcos_exhibitor_azure_account_key` - the azure account key for exhibitor storage (optional but required with dcos_exhibitor_address)
-- `dcos_exhibitor_azure_account_name` - the azure account name for exhibitor storage (optional but required with dcos_exhibitor_address)
-- `dcos_exhibitor_azure_prefix` - the azure account name for exhibitor storage (optional but required with dcos_exhibitor_address)
-- `dcos_exhibitor_explicit_keys` - set whether you are using AWS API keys to grant Exhibitor access to S3. (optional)
-- `dcos_exhibitor_storage_backend` - options are aws_s3, azure, or zookeeper (recommended)
-- `dcos_exhibitor_zk_hosts` - a comma-separated list of one or more ZooKeeper node IP and port addresses to use for configuring the internal Exhibitor instances. (optional)
-- `dcos_exhibitor_zk_path` - the filepath that Exhibitor uses to store data (optional)
 - `dcos_gc_delay` - The maximum amount of time to wait before cleaning up the executor directories (optional)
 - `dcos_http_proxy` - the http proxy (optional)
 - `dcos_https_proxy` - the https proxy (optional)
 - `dcos_log_directory` - The path to the installer host logs from the SSH processes. (optional)
-- `dcos_master_discovery` -  The Mesos master discovery method. The available options are static or master_http_loadbalancer
 - `dcos_master_dns_bindall` - Indicates whether the master DNS port is open. (optional)
-- `dcos_master_list` - statically set your master nodes (not recommended)
 - `dcos_no_proxy` -  A YAML nested list (-) of addresses to exclude from the proxy. (optional)
-- `dcos_num_masters` - set the num of master nodes (recommended)
 - `dcos_oauth_enabled` - [Open DC/OS Only] Indicates whether to enable authentication for your cluster. (optional)
 - `dcos_overlay_config_attempts` - Specifies how many failed configuration attempts are allowed before the overlay configuration modules stop trying to configure an virtual network. (optional)
-- `dcos_overlay_enable` - Enable to disable overlay(optional)
+- `dcos_overlay_enable` - Enable to disable overlay (optional)
 - `dcos_overlay_mtu` - The maximum transmission unit (MTU) of the Virtual Ethernet (vEth) on the containers that are launched on the overlay. (optional)
 - `dcos_overlay_network` - This group of parameters define an virtual network for DC/OS. (optional)
 - `dcos_process_timeout` - The allowable amount of time, in seconds, for an action to begin after the process forks. (optional)
 - `dcos_public_agent_list` - statically set your public agents (not recommended)
-- `dcos_resolvers ` - A YAML nested list (-) of DNS resolvers for your DC/OS cluster nodes.
 - `dcos_rexray_config_filename` - The REX-Ray configuration filename for enabling external persistent volumes in Marathon. (optional)
 - `dcos_rexray_config_method` - The REX-Ray configuration method for enabling external persistent volumes in Marathon.  (optional)
-- `dcos_s3_bucket` - name of the s3 bucket for the exhibitor backend (optional but required with dcos_exhibitor_address)
-- `dcos_s3_prefix` - name of the s3 prefix for the exhibitor backend (optional but required with dcos_exhibitor_address)
-- `dcos_security ` - [Enterprise DC/OS] set the security level of DC/OS. Default is permissive. (optional)
-- `dcos_superuser_password_hash` - set the superuser password hash (recommended)
-- `dcos_superuser_username` - set the superuser username (recommended)
 - `dcos_telemetry_enabled` - change the telemetry option (optional)
-- `dcos_use_proxy` - to enable use of proxy for internal routing(optional) 
-- `dcos_zk_agent_credentials` - set the zookeeper agent credentials (recommended) 
-- `dcos_zk_master_credentials` - set the zookeeper master credentials (recommended)
-- `dcos_zk_super_credentials` - set the zk super credentials (recommended) 
-- `dcos_cluster_docker_registry_url` - The custom URL that Mesos uses to pull Docker images from. If set, it will configure the Mesos’ --docker_registry flag to the specified URL.  (optional)
-- `dcos_rexray_config` - The REX-Ray configuration method for enabling external persistent volumes in Marathon.  (optional) 
-- `dcos_ip_detect_public_contents` - Allows DC/OS to be aware of your publicly routeable address for ease of use(recommended)
+- `dcos_use_proxy` - to enable use of proxy for internal routing (optional) 
+- `dcos_cluster_docker_registry_url` - The custom URL that Mesos uses to pull Docker images from. If set, it will configure the Mesos’ --docker_registry flag to the specified URL. (optional)
+- `dcos_rexray_config` - The REX-Ray configuration method for enabling external persistent volumes in Marathon. (optional) 
 - `dcos_enable_docker_gc` - Indicates whether to run the docker-gc script, a simple Docker container and image garbage collection script, once every hour to clean up stray Docker containers. (optional) 
 - `dcos_staged_package_storage_uri` - Where to temporarily store DC/OS packages while they are being added. (optional)
-- `dcos_package_storage_uri` - Where to permanently store DC/OS packages. The value must be a file URL,(optional)
-
+- `dcos_package_storage_uri` - Where to permanently store DC/OS packages. The value must be a file URL. (optional)
 
 ## Usage
 
@@ -299,6 +314,8 @@ resource "null_resource" "master" {
 ```
 
 ### Agents
+
+Use this to make any type of Mesos agent you desire. In this example below is a public agent. You can have gpu agents, private agents, etc. They will be either use the `dcos-mesos-agent` or `dcos-mesos-agent-public` role. 
 
 ```hcl
 
