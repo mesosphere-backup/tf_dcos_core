@@ -10,9 +10,12 @@ Any changes to DC/OS and its configs goes through a bootstrap node where its new
 
 ### Required Variables
 
-- `dcos_version` - specifies which dcos version instruction to use
-- `dcos_install_mode` - specifies which type of command to execute. Either `install` or `upgrade` 
-- `role` - specifies which dcos role of commands to run
+- `dcos_version` - specifies which dcos version instruction to use. 
+  - Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/bernadinm/tf_dcos_core/blob/master/download-variables.tf) or [dcos_version](https://github.com/bernadinm/tf_dcos_core/tree/master/dcos-versions) tree for a full list._ 
+- `dcos_install_mode` - specifies which type of command to execute. 
+  - Options: `install` or `upgrade` 
+- `role` - specifies which dcos role of commands to run.
+  - Options: `dcos-bootstrap`, `dcos-mesos-agent-public`, `dcos-mesos-agent` and `dcos-mesos-master`
 - `bootstrap_private_ip` - used for the private ip for the bootstrap url 
 - `dcos_bootstrap_port` - used to specify the port of the bootstrap url 
 - `dcos_cluster_name ` - sets the DC/OS cluster name 
