@@ -6,7 +6,12 @@ A Terraform module to install, upgrade, and modify nodes for DC/OS clusters in a
 ## Module Input Variables
 
 This long list of variables is required by DC/OS config.yaml for the bootstrap node. 
-Any changes to DC/OS and its configs goes through a bootstrap node where its new configs are sourced from DC/OS master and agents nodes. By making changes to any of these flags allows for easier deployments that are supported by http://dcos.io and http://mesosphere.com official documentation. This gives birth for automated installs and upgrades with minimal commands. 
+Any changes to DC/OS and its configs goes through a bootstrap node where its new configs are sourced from DC/OS master and agents nodes. By making changes to any of these flags allows for easier deployments that are supported by http://dcos.io and http://mesosphere.com official documentation. This gives birth for automated installs and upgrades with minimal commands.
+
+**Prerequisites Requirements**
+
+This tf_dcos_core module takes care of all the installation, modification, and upgrade instructions of DC/OS. Any prerequisites required to by tf_dcos_core will need to completed prior to this module being called. See [documentation](https://docs.mesosphere.com/1.9/installing/custom/system-requirements/) to see whats involved. 
+
 
 ### Required Variables
 
