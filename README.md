@@ -271,7 +271,7 @@ Any changes to DC/OS and its configs goes through a bootstrap node where its new
 
 # Create DCOS Mesos Master Scripts to execute
 module "dcos-mesos-master" {
-  source               = "./modules/dcos-core"
+  source               = "github.com/bernadinm/tf_dcos_core"
   bootstrap_private_ip = "${aws_instance.bootstrap.private_ip}"
   dcos_install_mode    = "${var.state}"
   dcos_version         = "${var.dcos_version}"
@@ -321,7 +321,7 @@ Use this to make any type of Mesos agent you desire. In this example below is a 
 
 # Create DCOS Mesos Public Agent Scripts to execute
 module "dcos-mesos-agent-public" {
-  source               = "./modules/dcos-core"
+  source               = "github.com/bernadinm/tf_dcos_core"
   bootstrap_private_ip = "${aws_instance.bootstrap.private_ip}"
   dcos_install_mode    = "${var.state}"
   dcos_version         = "${var.dcos_version}"
