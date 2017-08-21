@@ -7,5 +7,4 @@ sudo rm -rf /opt/mesosphere /etc/mesosphere
 sudo mkdir -p /var/lib/dcos
 sudo touch /var/lib/dcos/mesos-resources
 sudo bash dcos_install.sh -d slave
-
 # Completed

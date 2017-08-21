@@ -3,7 +3,7 @@ variable "dcos_download_path" {
 
   default = {
    "1.7-open"   = "https://downloads.dcos.io/dcos/EarlyAccess/commit/14509fe1e7899f439527fb39867194c7a425c771/dcos_generate_config.sh"
-   "1.8.0"      = "https://downloads.dcos.io/dcos/EarlyAccess/commit/586c0496863000322c016c631e463248d863690d/dcos_generate_config.sh"
+   "1.8"      = "https://downloads.dcos.io/dcos/EarlyAccess/commit/586c0496863000322c016c631e463248d863690d/dcos_generate_config.sh"
    "1.8.1"      = "https://downloads.dcos.io/dcos/EarlyAccess/commit/c1915a9f9f02caf7e34022eaea04f15ff853bd0e/dcos_generate_config.sh"
    "1.8.2"      = "https://downloads.dcos.io/dcos/EarlyAccess/commit/4cfc235259a2375c558f2e1bab3564419110459e/dcos_generate_config.sh"
    "1.8.3"      = "https://downloads.dcos.io/dcos/EarlyAccess/commit/636f8b72288e82ad3b0065928e0b492af4c7cf66/dcos_generate_config.sh"
