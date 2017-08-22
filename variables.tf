@@ -256,6 +256,10 @@ variable "dcos_public_agent_list" {
    default = ""
 }
 
+variable "dcos_previous_version" {
+   default = ""
+}
+
 variable "dcos_agent_list" {
    default = ""
 }
