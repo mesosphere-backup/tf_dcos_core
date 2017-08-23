@@ -48,6 +48,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 
 ### Recommended Variables
 
+- `dcos_previous_version` - DC/OS 1.9+ requires users to set this value to ensure users know the version. Terraform helps populate this value, but users can override it here. (recommended)
 - `dcos_resolvers ` - A YAML nested list (-) of DNS resolvers for your DC/OS cluster nodes. (recommended)
 - `dcos_ip_detect_public_contents` - Allows DC/OS to be aware of your publicly routeable address for ease of use (recommended)
 - `dcos_security ` - [Enterprise DC/OS] set the security level of DC/OS. Default is permissive. (recommended)
@@ -161,6 +162,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     dcos_overlay_mtu = "${var.dcos_overlay_mtu}"
     dcos_overlay_network = "${var.dcos_overlay_network}"
     dcos_process_timeout = "${var.dcos_process_timeout}"
+    dcos_previous_version = "${var.dcos_previous_version}"
     dcos_agent_list = "\n - ${join("\n - ", aws_instance.agent.*.private_ip)}"
     dcos_resolvers  = "\n - ${join("\n - ", var.dcos_resolvers)}"
     dcos_rexray_config_filename = "${var.dcos_rexray_config_filename}"
@@ -232,6 +234,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     dcos_overlay_mtu = "${var.dcos_overlay_mtu}"
     dcos_overlay_network = "${var.dcos_overlay_network}"
     dcos_process_timeout = "${var.dcos_process_timeout}"
+    dcos_previous_version = "${var.dcos_previous_version}"
     dcos_resolvers  = "\n - ${join("\n - ", var.dcos_resolvers)}"
     dcos_rexray_config_filename = "${var.dcos_rexray_config_filename}"
     dcos_rexray_config_method = "${var.dcos_rexray_config_method}"
