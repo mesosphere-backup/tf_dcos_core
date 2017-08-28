@@ -51,6 +51,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 - `dcos_previous_version` - DC/OS 1.9+ requires users to set this value to ensure users know the version. Terraform helps populate this value, but users can override it here. (recommended)
 - `dcos_resolvers ` - A YAML nested list (-) of DNS resolvers for your DC/OS cluster nodes. (recommended)
 - `dcos_ip_detect_public_contents` - Allows DC/OS to be aware of your publicly routeable address for ease of use (recommended)
+- `dcos_ip_detect_contents` - Allows DC/OS to detect your private address. Use this to pass this as an input to the module rather than a file in side your bootstrap node. (recommended)
 - `dcos_security ` - [Enterprise DC/OS] set the security level of DC/OS. Default is permissive. (recommended)
 - `dcos_superuser_password_hash` - [Enterprise DC/OS] set the superuser password hash (recommended)
 - `dcos_superuser_username` - [Enterprise DC/OS] set the superuser username (recommended)
@@ -180,6 +181,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     dcos_cluster_docker_registry_url = "${var.dcos_cluster_docker_registry_url}"
     dcos_rexray_config = "${var.dcos_rexray_config}"
     dcos_ip_detect_public_contents = "${var.dcos_ip_detect_public_contents}"
+    dcos_ip_detect_contents = "${var.dcos_ip_detect_contents}"
     dcos_enable_docker_gc = "${var.dcos_enable_docker_gc}"
     dcos_staged_package_storage_uri = "${var.dcos_staged_package_storage_uri}"
     dcos_package_storage_uri = "${var.dcos_package_storage_uri}"
@@ -251,6 +253,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     dcos_cluster_docker_registry_url = "${var.dcos_cluster_docker_registry_url}"
     dcos_rexray_config = "${var.dcos_rexray_config}"
     dcos_ip_detect_public_contents = "${var.dcos_ip_detect_public_contents}"
+    dcos_ip_detect_contents = "${var.dcos_ip_detect_contents}"
     dcos_enable_docker_gc = "${var.dcos_enable_docker_gc}"
     dcos_staged_package_storage_uri = "${var.dcos_staged_package_storage_uri}"
     dcos_package_storage_uri = "${var.dcos_package_storage_uri}"
