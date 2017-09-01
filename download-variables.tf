@@ -20,5 +20,7 @@ variable "dcos_download_path" {
    "1.9.0"      = "https://downloads.dcos.io/dcos/stable/commit/0ce03387884523f02624d3fb56c7fbe2e06e181b/dcos_generate_config.sh"
    "1.9.1"      = "https://downloads.dcos.io/dcos/stable/1.9.1/dcos_generate_config.sh"
    "1.9.2"      = "https://downloads.dcos.io/dcos/stable/1.9.2/dcos_generate_config.sh"
+   "1.9.3"      = "https://downloads.dcos.io/dcos/stable/1.9.3/dcos_generate_config.sh"
+   "1.10.0-rc1" = "https://downloads.dcos.io/dcos/EarlyAccess/commit/a5ecc9af5d9ca903f53fa16f6f0ebd597095652e/dcos_generate_config.sh"
   }
 }
