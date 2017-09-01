@@ -73,6 +73,7 @@ ${dcos_staged_package_storage_uri == "" ? "" : "  staged_package_storage_uri: ${
 ${dcos_package_storage_uri == "" ? "" : "  package_storage_uri: ${dcos_package_storage_uri}"}
 EOF
 sudo cp /tmp/ip-detect genconf/.
+sudo cp /tmp/ip-detect-public genconf/.
 OVERRIDE_PREVIOUS_DCOS_VERSION=${dcos_previous_version}
 PREVIOUS_DCOS_VERSION=$(grep -a "'dcos_version':" "$(find dcos_generate_config.* | tail -1)" | cut -d ":" -f2 | sed 's/,$//' | sed s/\'//g)
 curl -o dcos_generate_config.${dcos_version}.sh ${dcos_download_path}
