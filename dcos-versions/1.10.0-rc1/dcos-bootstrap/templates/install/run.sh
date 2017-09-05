@@ -56,6 +56,7 @@ ${dcos_no_proxy== "" ? "" : "no_proxy: ${dcos_no_proxy}"}
 ${dcos_check_time== "" ? "" : "check_time: ${dcos_check_time}"}
 ${dcos_ip_detect_contents== "" ? "" : "ip_detect_contents: ${dcos_ip_detect_contents}"}
 ${dcos_ip_detect_public_contents== "" ? "" : "ip_detect_public_contents: ${dcos_ip_detect_public_contents}"}
+${dcos_ip_detect_public_filename== "" ? "" : "ip_detect_public_filename: ${dcos_ip_detect_public_filename}"}
 ${dcos_docker_remove_delay== "" ? "" : "docker_remove_delay: ${dcos_docker_remove_delay}"}
 ${dcos_audit_logging== "" ? "" : "audit_logging: ${dcos_audit_logging}"}
 ${dcos_gc_delay== "" ? "" : "gc_delay: ${dcos_gc_delay}"}
