@@ -18,17 +18,17 @@ ${dcos_aws_template_upload== "" ? "" : "aws_template_upload: ${dcos_aws_template
 ${dcos_aws_template_storage_access_key_id== "" ? "" : "aws_template_storage_access_key_id: ${dcos_aws_template_storage_access_key_id}"}
 ${dcos_aws_template_storage_secret_access_key== "" ? "" : "aws_template_storage_secret_access_key: ${dcos_aws_template_storage_secret_access_key}"}
 ${dcos_exhibitor_storage_backend== "" ? "" : "exhibitor_storage_backend: ${dcos_exhibitor_storage_backend}"}
-${dcos_exhibitor_zk_hosts== "" ? "" : "exhibitor_zk_hosts: ${dcos_exhibitor_zk_hosts}"}
-${dcos_exhibitor_zk_path== "" ? "" : "exhibitor_zk_path: ${dcos_exhibitor_zk_path}"}
-${dcos_aws_access_key_id== "" ? "" : "aws_access_key_id: ${dcos_aws_access_key_id}"}
-${dcos_aws_region== "" ? "" : "aws_region: ${dcos_aws_region}"}
-${dcos_aws_secret_access_key== "" ? "" : "aws_secret_access_key: ${dcos_aws_secret_access_key}"}
-${dcos_exhibitor_explicit_keys== "" ? "" : "exhibitor_explicit_keys: ${dcos_exhibitor_explicit_keys}"}
+${dcos_exhibitor_storage_backend == "zookeeper" ? dcos_exhibitor_zk_hosts== "" ? "" : "exhibitor_zk_hosts: ${dcos_exhibitor_zk_hosts}" : ""}
+${dcos_exhibitor_storage_backend == "zookeeper" ? dcos_exhibitor_zk_path== "" ? "" : "exhibitor_zk_path: ${dcos_exhibitor_zk_path}" : ""}
+${dcos_exhibitor_storage_backend == "aws_s3" ? dcos_aws_access_key_id== "" ? "" : "aws_access_key_id: ${dcos_aws_access_key_id}" : ""}
+${dcos_exhibitor_storage_backend == "aws_s3" ? dcos_aws_region== "" ? "" : "aws_region: ${dcos_aws_region}" : ""}
+${dcos_exhibitor_storage_backend == "aws_s3" ? dcos_aws_secret_access_key== "" ? "" : "aws_secret_access_key: ${dcos_aws_secret_access_key}" : ""}
+${dcos_exhibitor_storage_backend == "aws_s3" ? dcos_exhibitor_explicit_keys== "" ? "" : "exhibitor_explicit_keys: ${dcos_exhibitor_explicit_keys}" :""}
 ${dcos_exhibitor_storage_backend == "aws_s3" ? dcos_s3_bucket== "" ? "" : "s3_bucket: ${dcos_s3_bucket}" : ""}
 ${dcos_exhibitor_storage_backend == "aws_s3" ? dcos_s3_prefix== "" ? "" : "s3_prefix: ${dcos_s3_prefix}" : ""}
-${dcos_exhibitor_azure_account_name== "" ? "" : "exhibitor_azure_account_name: ${dcos_exhibitor_azure_account_name}"}
-${dcos_exhibitor_azure_account_key== "" ? "" : "exhibitor_azure_account_key: ${dcos_exhibitor_azure_account_key}"}
-${dcos_exhibitor_azure_prefix== "" ? "" : "exhibitor_azure_prefix: ${dcos_exhibitor_azure_prefix}"}
+${dcos_exhibitor_storage_backend == "azure" ? dcos_exhibitor_azure_account_name== "" ? "" : "exhibitor_azure_account_name: ${dcos_exhibitor_azure_account_name}" : ""}
+${dcos_exhibitor_storage_backend == "azure" ? dcos_exhibitor_azure_account_key== "" ? "" : "exhibitor_azure_account_key: ${dcos_exhibitor_azure_account_key}" : ""}
+${dcos_exhibitor_storage_backend == "azure" ? dcos_exhibitor_azure_prefix== "" ? "" : "exhibitor_azure_prefix: ${dcos_exhibitor_azure_prefix}" : ""}
 ${dcos_master_discovery == "master_http_loadbalancer" ? dcos_num_masters == "" ? "" : "num_masters: ${dcos_num_masters}" : ""}
 ${dcos_master_discovery == "master_http_loadbalancer" ? dcos_exhibitor_address== "" ? "" : "exhibitor_address: ${dcos_exhibitor_address}" : ""}
 ${dcos_master_discovery == "static" ? dcos_master_list== "" ? "" : "master_list: ${dcos_master_list}" : ""}
