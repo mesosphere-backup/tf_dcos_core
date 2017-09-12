@@ -268,6 +268,10 @@ variable "dcos_bootstrap_port" {
    default = "80"
 }
 
+variable "dcos_ip_detect_public_filename" {
+   default = ""
+}
+
 variable "dcos_ip_detect_public_contents" {
   default = ""
 }
