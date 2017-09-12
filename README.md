@@ -10,7 +10,7 @@ Any changes to DC/OS and its configs goes through a bootstrap node where its new
 
 **Prerequisites Requirements**
 
-This tf_dcos_core module takes care of all the installation, modification, and upgrade instructions of DC/OS. Any prerequisites required to by tf_dcos_core will need to completed prior to this module being called. See [documentation](https://docs.mesosphere.com/1.9/installing/custom/system-requirements/) to see whats involved. 
+This tf_dcos_core module takes care of all the installation, modification, and upgrade instructions of DC/OS. Any prerequisites required to by tf_dcos_core will need to completed prior to this module being called. See [documentation](https://docs.mesosphere.com/1.9/installing/custom/system-requirements/) to see whats involved. It is required that the user running the commands executes the script as a super user.
 
 
 ### Required Variables
