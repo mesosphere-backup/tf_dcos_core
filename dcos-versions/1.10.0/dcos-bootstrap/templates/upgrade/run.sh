@@ -76,7 +76,7 @@ EOF
 cp /tmp/ip-detect genconf/.
 cp /tmp/ip-detect-public genconf/.
 OVERRIDE_PREVIOUS_DCOS_VERSION=${dcos_previous_version}
-PREVIOUS_DCOS_VERSION=$(grep -a "'dcos_version':" "$(find dcos_generate_config.* | tail -1)" | cut -d ":" -f2 | sed 's/,$//' | sed s/\'//g)
+PREVIOUS_DCOS_VERSION=$(grep -a "'dcos_version':" "$(ls -altr dcos_generate_config.*  | tail -1 | awk '{ print $9 }')" | cut -d ":" -f2 | sed 's/,$//' | sed s/\'//g)
 curl -o dcos_generate_config.${dcos_version}.sh ${dcos_download_path}
 bash dcos_generate_config.${dcos_version}.sh --generate-node-upgrade-script $${OVERRIDE_PREVIOUS_DCOS_VERSION:-$${PREVIOUS_DCOS_VERSION}}
 rm -fr genconf/serve/upgrade/current
