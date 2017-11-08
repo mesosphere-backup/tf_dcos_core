@@ -5,7 +5,7 @@ A Terraform module to install, upgrade, and modify nodes for DC/OS clusters in a
 
 ## Module Input Variables
 
-This long list of variables is required by DC/OS config.yaml for the bootstrap node. 
+This long list of variables is required by DC/OS config.yaml for the bootstrap node.
 Any changes to DC/OS and its configs goes through a bootstrap node where its new configs are sourced from DC/OS master and agents nodes. By making changes to any of these flags allows for easier deployments that are supported by http://dcos.io and http://mesosphere.com official documentation. This gives birth for automated installs and upgrades with minimal commands.
 
 **Prerequisites Requirements**
@@ -15,15 +15,15 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 
 ### Required Variables
 
-- `dcos_version` - specifies which dcos version instruction to use. 
-  - Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/bernadinm/tf_dcos_core/blob/master/download-variables.tf) or [dcos_version](https://github.com/bernadinm/tf_dcos_core/tree/master/dcos-versions) tree for a full list._ 
-- `dcos_install_mode` - specifies which type of command to execute. 
-  - Options: `install` or `upgrade` 
+- `dcos_version` - specifies which dcos version instruction to use.
+  - Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/bernadinm/tf_dcos_core/blob/master/download-variables.tf) or [dcos_version](https://github.com/bernadinm/tf_dcos_core/tree/master/dcos-versions) tree for a full list._
+- `dcos_install_mode` - specifies which type of command to execute.
+  - Options: `install` or `upgrade`
 - `role` - specifies which dcos role of commands to run.
   - Options: `dcos-bootstrap`, `dcos-mesos-agent-public`, `dcos-mesos-agent` and `dcos-mesos-master`
-- `bootstrap_private_ip` - used for the private ip for the bootstrap url 
-- `dcos_bootstrap_port` - used to specify the port of the bootstrap url 
-- `dcos_cluster_name ` - sets the DC/OS cluster name 
+- `bootstrap_private_ip` - used for the private ip for the bootstrap url
+- `dcos_bootstrap_port` - used to specify the port of the bootstrap url
+- `dcos_cluster_name ` - sets the DC/OS cluster name
 - `dcos_master_discovery` -  The Mesos master discovery method. The available options are static or master_http_loadbalancer. (recommend the use of master_http_loadbalancer)
 
 
@@ -56,14 +56,15 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 - `dcos_security ` - [Enterprise DC/OS] set the security level of DC/OS. Default is permissive. (recommended)
 - `dcos_superuser_password_hash` - [Enterprise DC/OS] set the superuser password hash (recommended)
 - `dcos_superuser_username` - [Enterprise DC/OS] set the superuser username (recommended)
-- `dcos_zk_agent_credentials` - [Enterprise DC/OS] set the ZooKeeper agent credentials (recommended) 
+- `dcos_zk_agent_credentials` - [Enterprise DC/OS] set the ZooKeeper agent credentials (recommended)
 - `dcos_zk_master_credentials` - [Enterprise DC/OS] set the ZooKeeper master credentials (recommended)
-- `dcos_zk_super_credentials` - [Enterprise DC/OS] set the zk super credentials (recommended) 
+- `dcos_zk_super_credentials` - [Enterprise DC/OS] set the zk super credentials (recommended)
 
 
 ### Optional Variables
 
 - `dcos_dns_search` - A space-separated list of domains that are tried when an unqualified domain is entered. (optional)
+- `dcos_dns_forward_zones` - Allow to forward DNS to certain domain requests to specific server. The [following syntax](https://github.com/dcos/dcos-docs/blob/master/1.10/installing/custom/configuration/configuration-parameters.md#dns_forward_zones) must be used in combination with [Terraform string heredoc](https://www.terraform.io/docs/configuration/variables.html#strings). (optional) (:warning: DC/OS 1.10+)
 - `custom_dcos_download_path` - insert location of dcos installer script (optional)
 - `dcos_agent_list` - used to list the agents in the config.yaml (optional)
 - `dcos_audit_logging` - [Enterprise DC/OS] enable security decisions are logged for Mesos, Marathon, and Jobs. (optional)
@@ -98,10 +99,10 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 - `dcos_rexray_config_filename` - The REX-Ray configuration filename for enabling external persistent volumes in Marathon. (optional)
 - `dcos_rexray_config_method` - The REX-Ray configuration method for enabling external persistent volumes in Marathon.  (optional)
 - `dcos_telemetry_enabled` - change the telemetry option (optional)
-- `dcos_use_proxy` - to enable use of proxy for internal routing (optional) 
+- `dcos_use_proxy` - to enable use of proxy for internal routing (optional)
 - `dcos_cluster_docker_registry_url` - The custom URL that Mesos uses to pull Docker images from. If set, it will configure the Mesos’ --docker_registry flag to the specified URL. (optional)
-- `dcos_rexray_config` - The REX-Ray configuration method for enabling external persistent volumes in Marathon. (optional) 
-- `dcos_enable_docker_gc` - Indicates whether to run the docker-gc script, a simple Docker container and image garbage collection script, once every hour to clean up stray Docker containers. (optional) 
+- `dcos_rexray_config` - The REX-Ray configuration method for enabling external persistent volumes in Marathon. (optional)
+- `dcos_enable_docker_gc` - Indicates whether to run the docker-gc script, a simple Docker container and image garbage collection script, once every hour to clean up stray Docker containers. (optional)
 - `dcos_staged_package_storage_uri` - Where to temporarily store DC/OS packages while they are being added. (optional)
 - `dcos_package_storage_uri` - Where to permanently store DC/OS packages. The value must be a file URL. (optional)
 
@@ -109,8 +110,8 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 
 ### Bootstrap Node
 
-```hcl 
-# Create DCOS Mesos Master Scripts to execute. Not all variables are required. 
+```hcl
+# Create DCOS Mesos Master Scripts to execute. Not all variables are required.
   module "dcos-bootstrap" {
     source  = "./modules/dcos-core"
     bootstrap_private_ip = "${aws_instance.bootstrap.private_ip}"
@@ -119,7 +120,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     role = "dcos-bootstrap"
     dcos_bootstrap_port = "${var.custom_dcos_bootstrap_port}"
     custom_dcos_download_path = "${var.custom_dcos_download_path}"
-    dcos_public_agent_list = "\n - ${join("\n - ", aws_instance.public-agent.*.private_ip)}" 
+    dcos_public_agent_list = "\n - ${join("\n - ", aws_instance.public-agent.*.private_ip)}"
     dcos_audit_logging = "${var.dcos_audit_logging}"
     dcos_auth_cookie_secure_flag = "${var.dcos_auth_cookie_secure_flag}"
     dcos_aws_access_key_id = "${var.dcos_aws_access_key_id}"
@@ -140,6 +141,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     dcos_cluster_name  = "${coalesce(var.dcos_cluster_name, data.template_file.cluster-name.rendered)}"
     dcos_customer_key = "${var.dcos_customer_key}"
     dcos_dns_search = "${var.dcos_dns_search}"
+    dcos_dns_forward_zones = "${var.dcos_dns_forward_zones}"
     dcos_docker_remove_delay = "${var.dcos_docker_remove_delay}"
     dcos_exhibitor_address = "${aws_elb.internal-master-elb.dns_name}"
     dcos_exhibitor_azure_account_key = "${var.dcos_exhibitor_azure_account_key}"
@@ -178,7 +180,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     dcos_use_proxy = "${var.dcos_use_proxy}"
     dcos_zk_agent_credentials = "${var.dcos_zk_agent_credentials}"
     dcos_zk_master_credentials = "${var.dcos_zk_master_credentials}"
-    dcos_zk_super_credentials = "${var.dcos_zk_super_credentials}"    
+    dcos_zk_super_credentials = "${var.dcos_zk_super_credentials}"
     dcos_cluster_docker_registry_url = "${var.dcos_cluster_docker_registry_url}"
     dcos_rexray_config = "${var.dcos_rexray_config}"
     dcos_ip_detect_public_contents = "${var.dcos_ip_detect_public_contents}"
@@ -187,7 +189,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     dcos_staged_package_storage_uri = "${var.dcos_staged_package_storage_uri}"
     dcos_package_storage_uri = "${var.dcos_package_storage_uri}"
  }
- 
+
  resource "null_resource" "bootstrap" {
   # Changes to any instance of the cluster requires re-provisioning. Not all variables are required.
   triggers {
@@ -214,6 +216,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     dcos_cluster_docker_credentials_write_to_etc = "${var.dcos_cluster_docker_credentials_write_to_etc}"
     dcos_customer_key = "${var.dcos_customer_key}"
     dcos_dns_search = "${var.dcos_dns_search}"
+    dcos_dns_forward_zones = "${var.dcos_dns_forward_zones}"
     dcos_docker_remove_delay = "${var.dcos_docker_remove_delay}"
     dcos_exhibitor_address = "${aws_elb.internal-master-elb.dns_name}"
     dcos_exhibitor_azure_account_key = "${var.dcos_exhibitor_azure_account_key}"
@@ -303,7 +306,7 @@ resource "null_resource" "master" {
     user = "${module.aws-tested-oses.user}"
   }
   count = "${var.num_of_masters}"
-  
+
   # Generate and upload Master script to node
   provisioner "file" {
     content     = "${module.dcos-mesos-master.script}"
@@ -313,7 +316,7 @@ resource "null_resource" "master" {
   # Wait for bootstrapnode to be ready
   provisioner "remote-exec" {
     inline = [
-     "until $(curl --output /dev/null --silent --head --fail http://${aws_instance.bootstrap.private_ip}/dcos_install.sh); do printf 'waiting for bootstrap node to serve...'; sleep 20; done" 
+     "until $(curl --output /dev/null --silent --head --fail http://${aws_instance.bootstrap.private_ip}/dcos_install.sh); do printf 'waiting for bootstrap node to serve...'; sleep 20; done"
     ]
   }
 
@@ -330,7 +333,7 @@ resource "null_resource" "master" {
 
 ### Agents
 
-Use this to make any type of Mesos agent you desire. In this example below is a public agent. You can have gpu agents, private agents, etc. They will be either use the `dcos-mesos-agent` or `dcos-mesos-agent-public` role. 
+Use this to make any type of Mesos agent you desire. In this example below is a public agent. You can have gpu agents, private agents, etc. They will be either use the `dcos-mesos-agent` or `dcos-mesos-agent-public` role.
 
 ```hcl
 
