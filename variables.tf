@@ -24,6 +24,10 @@ variable "dcos_resolvers" {
    default = ""
 }
 
+variable "dcos_skip_checks" {
+   default = ""
+}
+
 variable "dcos_oauth_enabled" {
    default = ""
 }

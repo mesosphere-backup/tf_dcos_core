@@ -63,6 +63,7 @@ template = "${file("${path.module}/dcos-versions/${var.dcos_version}/${var.role}
     dcos_security  = "${var.dcos_security}"
     dcos_superuser_password_hash = "${var.dcos_superuser_password_hash}"
     dcos_superuser_username = "${var.dcos_superuser_username}"
+    dcos_skip_checks = "${var.dcos_skip_checks}"
     dcos_telemetry_enabled = "${var.dcos_telemetry_enabled}"
     dcos_use_proxy = "${var.dcos_use_proxy}"
     dcos_zk_agent_credentials = "${var.dcos_zk_agent_credentials}"
