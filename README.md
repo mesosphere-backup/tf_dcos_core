@@ -49,6 +49,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 ### Recommended Variables
 
 - `dcos_previous_version` - DC/OS 1.9+ requires users to set this value to ensure users know the version. Terraform helps populate this value, but users can override it here. (recommended)
+- `dcos_master_external_loadbalancer` - Allows DC/OS to configure certs around the External Load Balancer name. If not used SSL verfication issues will arrise. EE only. (recommended)
 - `dcos_resolvers ` - A YAML nested list (-) of DNS resolvers for your DC/OS cluster nodes. (recommended)
 - `dcos_ip_detect_public_contents` - Allows DC/OS to be aware of your publicly routeable address for ease of use (recommended)
 - `dcos_ip_detect_public_filename` - statically set your detect-ip-public path

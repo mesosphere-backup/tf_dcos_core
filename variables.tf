@@ -32,6 +32,10 @@ variable "dcos_oauth_enabled" {
    default = ""
 }
 
+variable "dcos_master_external_loadbalancer" {
+   default = ""
+}
+
 variable "dcos_master_discovery" {
    default = ""
 }

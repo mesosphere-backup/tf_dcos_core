@@ -42,6 +42,7 @@ template = "${file("${path.module}/dcos-versions/${var.dcos_version}/${var.role}
     dcos_http_proxy = "${var.dcos_http_proxy}"
     dcos_https_proxy = "${var.dcos_https_proxy}"
     dcos_log_directory = "${var.dcos_log_directory}"
+    dcos_master_external_loadbalancer = "${var.dcos_master_external_loadbalancer}"
     dcos_master_discovery = "${var.dcos_master_discovery}"
     dcos_master_dns_bindall = "${var.dcos_master_dns_bindall}"
     dcos_master_list = "${var.dcos_master_list}"
