@@ -24,8 +24,16 @@ variable "dcos_resolvers" {
   default = ""
 }
 
+variable "dcos_skip_checks" {
+   default = "true"
+}
+
 variable "dcos_oauth_enabled" {
   default = ""
+}
+
+variable "dcos_master_external_loadbalancer" {
+   default = ""
 }
 
 variable "dcos_master_discovery" {
@@ -262,6 +270,10 @@ variable "dcos_public_agent_list" {
 
 variable "dcos_previous_version" {
   default = ""
+}
+
+variable "dcos_previous_version_master_index" {
+   default = "0"
 }
 
 variable "dcos_agent_list" {

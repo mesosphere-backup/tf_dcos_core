@@ -49,6 +49,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 ### Recommended Variables
 
 - `dcos_previous_version` - DC/OS 1.9+ requires users to set this value to ensure users know the version. Terraform helps populate this value, but users can override it here. (recommended)
+- `dcos_master_external_loadbalancer` - Allows DC/OS to configure certs around the External Load Balancer name. If not used SSL verfication issues will arrise. EE only. (recommended)
 - `dcos_resolvers ` - A YAML nested list (-) of DNS resolvers for your DC/OS cluster nodes. (recommended)
 - `dcos_ip_detect_public_contents` - Allows DC/OS to be aware of your publicly routeable address for ease of use (recommended)
 - `dcos_ip_detect_public_filename` - statically set your detect-ip-public path
@@ -63,6 +64,8 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 
 ### Optional Variables
 
+- `dcos_previous_version_master_index` - Used to track the index of master for quering the previous DC/OS version during upgrading. (optional) applicable: 1.9+
+- `dcos_skip_checks` - Upgrade option: Used to skip all dcos checks that may block an upgrade if any DC/OS component is unhealthly. (optional) applicable: 1.10+
 - `dcos_dns_search` - A space-separated list of domains that are tried when an unqualified domain is entered. (optional)
 - `dcos_dns_forward_zones` - Allow to forward DNS to certain domain requests to specific server. The [following syntax](https://github.com/dcos/dcos-docs/blob/master/1.10/installing/custom/configuration/configuration-parameters.md#dns_forward_zones) must be used in combination with [Terraform string heredoc](https://www.terraform.io/docs/configuration/variables.html#strings). (optional) (:warning: DC/OS 1.10+)
 - `custom_dcos_download_path` - insert location of dcos installer script (optional)
@@ -293,6 +296,7 @@ module "dcos-mesos-master" {
   bootstrap_private_ip = "${aws_instance.bootstrap.private_ip}"
   dcos_install_mode    = "${var.state}"
   dcos_version         = "${var.dcos_version}"
+  dcos_skip_checks     = "${var.dcos_skip_checks}"
   role                 = "dcos-mesos-master"
 }
 
@@ -343,6 +347,7 @@ module "dcos-mesos-agent-public" {
   bootstrap_private_ip = "${aws_instance.bootstrap.private_ip}"
   dcos_install_mode    = "${var.state}"
   dcos_version         = "${var.dcos_version}"
+  dcos_skip_checks     = "${var.dcos_skip_checks}"
   role                 = "dcos-mesos-agent-public"
 }
 
