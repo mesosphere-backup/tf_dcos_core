@@ -49,6 +49,7 @@ ${dcos_overlay_config_attempts== "" ? "" : "dcos_overlay_config_attempts: ${dcos
 ${dcos_overlay_mtu== "" ? "" : "dcos_overlay_mtu: ${dcos_overlay_mtu}"}
 ${dcos_overlay_network== "" ? "" : "dcos_overlay_network: ${dcos_overlay_network}"}
 ${dcos_dns_search== "" ? "" : "dns_search: ${dcos_dns_search}"}
+${dcos_dns_forward_zones== "" ? "" : "dns_forward_zones: ${dcos_dns_forward_zones}"}
 ${dcos_master_dns_bindall== "" ? "" : "master_dns_bindall: ${dcos_master_dns_bindall}"}
 ${dcos_use_proxy== "" ? "" : "use_proxy: ${dcos_use_proxy}"}
 ${dcos_http_proxy== "" ? "" : "http_proxy: ${dcos_http_proxy}"}
