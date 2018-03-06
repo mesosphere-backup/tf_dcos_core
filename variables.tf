@@ -140,6 +140,22 @@ variable "dcos_rexray_config_filename" {
   default = ""
 }
 
+variable "dcos_adminrouter_tls_1_0_enabled" {
+  default = ""
+}
+
+variable "dcos_adminrouter_tls_1_1_enabled" {
+  default = ""
+}
+
+variable "dcos_adminrouter_tls_1_2_enabled" {
+  default = ""
+}
+
+variable "dcos_adminrouter_tls_cipher_suite" {
+  default = ""
+}
+
 variable "dcos_auth_cookie_secure_flag" {
   default = ""
 }
@@ -153,6 +169,70 @@ variable "dcos_superuser_password_hash" {
 }
 
 variable "dcos_cluster_name" {
+  default = ""
+}
+
+variable "dcos_ca_certificate_chain_path" {
+  default = ""
+}
+
+variable "dcos_ca_certificate_path" {
+  default = ""
+}
+
+variable "dcos_ca_certificate_key_path" {
+  default = ""
+}
+
+variable "dcos_config" {
+  default = ""
+}
+
+variable "dcos_custom_checks" {
+  default = ""
+}
+
+variable "dcos_dns_bind_ip_blacklist" {
+  default = ""
+}
+
+variable "dcos_enable_gpu_isolation" {
+  default = ""
+}
+
+variable "dcos_fault_domain_detect_contents" {
+  default = ""
+}
+
+variable "dcos_fault_domain_enabled" {
+  default = ""
+}
+
+variable "dcos_gpus_are_scarce" {
+  default = ""
+}
+
+variable "dcos_l4lb_enable_ipv6" {
+  default = ""
+}
+
+variable "dcos_license_key_contents" {
+  default = ""
+}
+
+variable "dcos_mesos_container_log_sink" {
+  default = ""
+}
+
+variable "dcos_mesos_dns_set_truncate_bit" {
+  default = ""
+}
+
+variable "dcos_mesos_max_completed_tasks_per_framework" {
+  default = ""
+}
+
+variable "dcos_ucr_default_bridge_subnet" {
   default = ""
 }
 

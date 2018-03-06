@@ -78,7 +78,28 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 - `dcos_aws_template_storage_region_name` - the aws CloudFormation region name (optional)
 - `dcos_aws_template_storage_secret_access_key` - the aws secret key for the CloudFormation template (optional)
 - `dcos_aws_template_upload` - to automatically upload the customized advanced templates to your S3 bucket. (optional)
+- `dcos_adminrouter_tls_1_0_enabled` - Indicates whether to enable TLSv1 support in Admin Router. (optional)
+- `dcos_adminrouter_tls_1_1_enabled` - Indicates whether to enable TLSv2 support in Admin Router. (optional)
+- `dcos_adminrouter_tls_1_3_enabled` - Indicates whether to enable TLSv3 support in Admin Router. (optional)
+- `dcos_adminrouter_tls_cipher_suite` - [Enterprise DC/OS] Indicates whether to allow web browsers to send the DC/OS authentication cookie through a non-HTTPS connection. (optional)
 - `dcos_bouncer_expiration_auth_token_days` - [Enterprise DC/OS] Sets the auth token time-to-live (TTL) for Identity and Access Management. (optional)
+- `dcos_ca_certificate_chain_path` - [Enterprise DC/OS] Path (relative to the $DCOS_INSTALL_DIR) to a file containing the complete CA certification chain required for end-entity certificate verification, in the OpenSSL PEM format. (optional)
+- `dcos_ca_certificate_key_path` - [Enterprise DC/OS] Path (relative to the $DCOS_INSTALL_DIR) to a file containing the private key corresponding to the custom CA certificate, encoded in the OpenSSL (PKCS#8) PEM format. (optional)
+- `dcos_ca_certificate_path` - [Enterprise DC/OS] Path (relative to the $DCOS_INSTALL_DIR) to a file containing a single X.509 CA certificate in the OpenSSL PEM format. (optional)
+- `dcos_config` - used to add any extra arguments in the config.yaml that are not specified here. (optional)
+- `dcos_custom_checks` - Custom installation checks that are added to the default check configuration process. (optional)
+- `dcos_dns_bind_ip_blacklist` - A list of IP addresses that DC/OS DNS resolvers cannot bind to. (optional)
+- `dcos_enable_docker_gc` - Indicates whether to run the docker-gc script, a simple Docker container and image garbage collection script, once every hour to clean up stray Docker containers. (optional)
+- `dcos_enable_gpu_isolation` - Indicates whether to enable GPU support in DC/OS. (optional)
+- `dcos_fault_domain_detect_contents` - [Enterprise DC/OS] fault domain script contents. Optional but required if no fault-domain-detect script present.
+- `dcos_fault_domain_enabled` - [Enterprise DC/OS] used to control if fault domain is enabled
+- `dcos_gpus_are_scarce` - Indicates whether to treat GPUs as a scarce resource in the cluster. (optional)
+- `dcos_l4lb_enable_ipv6` - A boolean that indicates if layer 4 load balancing is available for IPv6 networks. (optional)
+- `dcos_license_key_contents` - [Enterprise DC/OS] used to privide the license key of DC/OS for Enterprise Edition. Optional if license.txt is present on bootstrap node.
+- `dcos_mesos_container_log_sink` - The log manager for containers (tasks). The options are to send logs to: "journald", "logrotate", "journald+logrotate'". (optional)
+- `dcos_mesos_dns_set_truncate_bit` - Indicates whether to set the truncate bit if the response is too large to fit in a single packet. (optional)
+- `dcos_mesos_max_completed_tasks_per_framework` - The number of completed tasks for each framework that the Mesos master will retain in memory. (optional)
+- `dcos_ucr_default_bridge_subnet` - IPv4 subnet allocated to the mesos-bridge CNI network for UCR bridge-mode networking. (optional)
 - `dcos_check_time` - check if Network Time Protocol (NTP) is enabled during DC/OS startup. (optional)
 - `dcos_cluster_docker_credentials` - The dictionary of Docker credentials to pass. (optional)
 - `dcos_cluster_docker_credentials_dcos_owned` - Indicates whether to store the credentials file in /opt/mesosphere or /etc/mesosphere/docker_credentials. A sysadmin cannot edit /opt/mesosphere directly (optional)
@@ -136,6 +157,27 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     dcos_aws_template_storage_secret_access_key = "${var.dcos_aws_template_storage_secret_access_key}"
     dcos_aws_template_upload = "${var.dcos_aws_template_upload}"
     dcos_bouncer_expiration_auth_token_days = "${var.dcos_bouncer_expiration_auth_token_days}"
+    dcos_adminrouter_tls_1_0_enabled = "${var.dcos_adminrouter_tls_1_0_enabled}"
+    dcos_adminrouter_tls_1_1_enabled = "${var.dcos_adminrouter_tls_1_1_enabled}"
+    dcos_adminrouter_tls_1_2_enabled = "${var.dcos_adminrouter_tls_1_2_enabled}"
+    dcos_adminrouter_tls_cipher_suite= "${var.dcos_adminrouter_tls_cipher_suite}"
+    dcos_ca_certificate_chain_path = "${var.dcos_ca_certificate_chain_path}"
+    dcos_ca_certificate_key_path = "${var.dcos_ca_certificate_key_path}"
+    dcos_ca_certificate_path = "${var.dcos_ca_certificate_path}"
+    dcos_config= "${var.dcos_config}"
+    dcos_custom_checks = "${var.dcos_custom_checks}"
+    dcos_dns_bind_ip_blacklist = "${var.dcos_dns_bind_ip_blacklist}"
+    dcos_enable_docker_gc= "${var.dcos_enable_docker_gc}"
+    dcos_enable_gpu_isolation= "${var.dcos_enable_gpu_isolation}"
+    dcos_fault_domain_detect_contents= "${var.dcos_fault_domain_detect_contents}"
+    dcos_fault_domain_enabled= "${var.dcos_fault_domain_enabled}"
+    dcos_gpus_are_scarce = "${var.dcos_gpus_are_scarce}"
+    dcos_l4lb_enable_ipv6= "${var.dcos_l4lb_enable_ipv6}"
+    dcos_license_key_contents= "${var.dcos_license_key_contents}"
+    dcos_mesos_container_log_sink= "${var.dcos_mesos_container_log_sink}"
+    dcos_mesos_dns_set_truncate_bit= "${var.dcos_mesos_dns_set_truncate_bit}"
+    dcos_mesos_max_completed_tasks_per_framework = "${var.dcos_mesos_max_completed_tasks_per_framework}"
+    dcos_ucr_default_bridge_subnet = "${var.dcos_ucr_default_bridge_subnet}"
     dcos_check_time = "${var.dcos_check_time}"
     dcos_cluster_docker_credentials = "${var.dcos_cluster_docker_credentials}"
     dcos_cluster_docker_credentials_dcos_owned = "${var.dcos_cluster_docker_credentials_dcos_owned}"
@@ -229,6 +271,28 @@ This tf_dcos_core module takes care of all the installation, modification, and u
     dcos_exhibitor_storage_backend = "${var.dcos_exhibitor_storage_backend}"
     dcos_exhibitor_zk_hosts = "${var.dcos_exhibitor_zk_hosts}"
     dcos_exhibitor_zk_path = "${var.dcos_exhibitor_zk_path}"
+    dcos_adminrouter_tls_1_0_enabled = "${var.dcos_adminrouter_tls_1_0_enabled}"
+    dcos_adminrouter_tls_1_1_enabled = "${var.dcos_adminrouter_tls_1_1_enabled}"
+    dcos_adminrouter_tls_1_2_enabled = "${var.dcos_adminrouter_tls_1_2_enabled}"
+    dcos_adminrouter_tls_cipher_suite= "${var.dcos_adminrouter_tls_cipher_suite}"
+    dcos_ca_certificate_chain_path = "${var.dcos_ca_certificate_chain_path}"
+    dcos_ca_certificate_key_path = "${var.dcos_ca_certificate_key_path}"
+    dcos_ca_certificate_path = "${var.dcos_ca_certificate_path}"
+    dcos_config= "${var.dcos_config}"
+    dcos_custom_checks = "${var.dcos_custom_checks}"
+    dcos_cluster_name  = "${coalesce(var.dcos_cluster_name, data.template_file.cluster-name.rendered)}"
+    dcos_dns_bind_ip_blacklist = "${var.dcos_dns_bind_ip_blacklist}"
+    dcos_enable_docker_gc= "${var.dcos_enable_docker_gc}"
+    dcos_enable_gpu_isolation= "${var.dcos_enable_gpu_isolation}"
+    dcos_fault_domain_detect_contents= "${var.dcos_fault_domain_detect_contents}"
+    dcos_fault_domain_enabled= "${var.dcos_fault_domain_enabled}"
+    dcos_gpus_are_scarce = "${var.dcos_gpus_are_scarce}"
+    dcos_l4lb_enable_ipv6= "${var.dcos_l4lb_enable_ipv6}"
+    dcos_license_key_contents= "${var.dcos_license_key_contents}"
+    dcos_mesos_container_log_sink= "${var.dcos_mesos_container_log_sink}"
+    dcos_mesos_dns_set_truncate_bit= "${var.dcos_mesos_dns_set_truncate_bit}"
+    dcos_mesos_max_completed_tasks_per_framework = "${var.dcos_mesos_max_completed_tasks_per_framework}"
+    dcos_ucr_default_bridge_subnet = "${var.dcos_ucr_default_bridge_subnet}"
     dcos_gc_delay = "${var.dcos_gc_delay}"
     dcos_http_proxy = "${var.dcos_http_proxy}"
     dcos_https_proxy = "${var.dcos_https_proxy}"
