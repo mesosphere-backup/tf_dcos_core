@@ -67,7 +67,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 - `dcos_previous_version_master_index` - Used to track the index of master for quering the previous DC/OS version during upgrading. (optional) applicable: 1.9+
 - `dcos_skip_checks` - Upgrade option: Used to skip all dcos checks that may block an upgrade if any DC/OS component is unhealthly. (optional) applicable: 1.10+
 - `dcos_dns_search` - A space-separated list of domains that are tried when an unqualified domain is entered. (optional)
-- `dcos_dns_forward_zones` - Allow to forward DNS to certain domain requests to specific server. The [following syntax](https://github.com/dcos/dcos-docs/blob/master/1.10/installing/custom/configuration/configuration-parameters.md#dns_forward_zones) must be used in combination with [Terraform string heredoc](https://www.terraform.io/docs/configuration/variables.html#strings). (optional) (:warning: DC/OS 1.10+)
+- `dcos_dns_forward_zones` - Allow to forward DNS to certain domain requests to specific server. The [following syntax](https://github.com/dcos/dcos-docs/blob/master/1.10/installing/custom/configuration/configuration-parameters.md#dns_forward_zones) must be used in combination with [Terraform string heredoc](https://www.terraform.io/docs/configuration/variables.html#strings). (optional) (DC/OS 1.10+)
 - `custom_dcos_download_path` - insert location of dcos installer script (optional)
 - `dcos_agent_list` - used to list the agents in the config.yaml (optional)
 - `dcos_audit_logging` - [Enterprise DC/OS] enable security decisions are logged for Mesos, Marathon, and Jobs. (optional)
