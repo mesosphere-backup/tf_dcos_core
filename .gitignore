@@ -1,4 +1,5 @@
 .DS_Store
 .terraform
+terraform.tfstate*
 *.bak
 !/*.bak
