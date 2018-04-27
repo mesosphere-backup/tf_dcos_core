@@ -16,7 +16,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 ### Required Variables
 
 - `dcos_version` - specifies which dcos version instruction to use.
-  - Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/bernadinm/tf_dcos_core/blob/master/download-variables.tf) or [dcos_version](https://github.com/bernadinm/tf_dcos_core/tree/master/dcos-versions) tree for a full list._
+  - Options: `1.9.0`, `1.8.8`, etc. _See [dcos_download_path](https://github.com/dcos/tf_dcos_core/blob/master/download-variables.tf) or [dcos_version](https://github.com/dcos/tf_dcos_core/tree/master/dcos-versions) tree for a full list._
 - `dcos_install_mode` - specifies which type of command to execute.
   - Options: `install` or `upgrade`
 - `role` - specifies which dcos role of commands to run.
@@ -67,7 +67,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 - `dcos_previous_version_master_index` - Used to track the index of master for quering the previous DC/OS version during upgrading. (optional) applicable: 1.9+
 - `dcos_skip_checks` - Upgrade option: Used to skip all dcos checks that may block an upgrade if any DC/OS component is unhealthly. (optional) applicable: 1.10+
 - `dcos_dns_search` - A space-separated list of domains that are tried when an unqualified domain is entered. (optional)
-- `dcos_dns_forward_zones` - Allow to forward DNS to certain domain requests to specific server. The [following syntax](https://github.com/dcos/dcos-docs/blob/master/1.10/installing/custom/configuration/configuration-parameters.md#dns_forward_zones) must be used in combination with [Terraform string heredoc](https://www.terraform.io/docs/configuration/variables.html#strings). (optional) (DC/OS 1.10+)
+- `dcos_dns_forward_zones` - Allow to forward DNS to certain domain requests to specific server. The [following syntax](https://github.com/dcos/dcos-docs/blob/master/1.10/installing/custom/configuration/configuration-parameters.md#dns_forward_zones) must be used in combination with [Terraform string heredoc](https://www.terraform.io/docs/configuration/variables.html#strings). (optional) (:warning: DC/OS 1.10+)
 - `custom_dcos_download_path` - insert location of dcos installer script (optional)
 - `dcos_agent_list` - used to list the agents in the config.yaml (optional)
 - `dcos_audit_logging` - [Enterprise DC/OS] enable security decisions are logged for Mesos, Marathon, and Jobs. (optional)
@@ -356,7 +356,7 @@ This tf_dcos_core module takes care of all the installation, modification, and u
 
 # Create DCOS Mesos Master Scripts to execute
 module "dcos-mesos-master" {
-  source               = "github.com/bernadinm/tf_dcos_core"
+  source               = "github.com/dcos/tf_dcos_core"
   bootstrap_private_ip = "${aws_instance.bootstrap.private_ip}"
   dcos_install_mode    = "${var.state}"
   dcos_version         = "${var.dcos_version}"
@@ -407,7 +407,7 @@ Use this to make any type of Mesos agent you desire. In this example below is a 
 
 # Create DCOS Mesos Public Agent Scripts to execute
 module "dcos-mesos-agent-public" {
-  source               = "github.com/bernadinm/tf_dcos_core"
+  source               = "github.com/dcos/tf_dcos_core"
   bootstrap_private_ip = "${aws_instance.bootstrap.private_ip}"
   dcos_install_mode    = "${var.state}"
   dcos_version         = "${var.dcos_version}"
