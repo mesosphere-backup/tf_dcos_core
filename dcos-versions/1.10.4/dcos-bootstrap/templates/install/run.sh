@@ -74,7 +74,7 @@ ${dcos_staged_package_storage_uri == "" ? "" : dcos_package_storage_uri == "" ? 
 ${dcos_staged_package_storage_uri == "" ? "" : "  staged_package_storage_uri: ${dcos_staged_package_storage_uri}"}
 ${dcos_package_storage_uri == "" ? "" : "  package_storage_uri: ${dcos_package_storage_uri}"}
 EOF
-curl -o dcos_generate_config.${dcos_version}.sh ${dcos_download_path}
+for i in {1..5}; do curl -o dcos_generate_config.${dcos_version}.sh ${dcos_download_path} && break || sleep 15; done
 cp /tmp/ip-detect genconf/. &> /dev/null; if [[ $? -ne 0 ]]; then echo "skipping absent /tmp/ip-detect file"; else echo "copied file /tmp/ip-detect to ~/genconf"; fi
 cp /tmp/ip-detect-public genconf/. &> /dev/null; if [[ $? -ne 0 ]]; then echo "skipping absent /tmp/ip-detect-public file"; else echo "copied file /tmp/ip-detect-public to ~/genconf"; fi
 bash dcos_generate_config.${dcos_version}.sh || exit 1
