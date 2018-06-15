@@ -6,8 +6,7 @@ mkdir .tf_dcos_core
 mv * .tf_dcos_core
 git remote add terraform-dcos https://github.com/dcos/terraform-dcos.git
 git fetch terraform-dcos
-# change this line once ci_script branch is merged in terraform-dcos
-git reset --hard terraform-dcos/ci_script
+git reset --hard terraform-dcos/master
 find . -name '*.tf' -exec sed -i 's|github.com/dcos/tf_dcos_core|../.tf_dcos_core|g' {} \;
 chmod +x ci_smoke_test.sh
 ./ci_smoke_test.sh
