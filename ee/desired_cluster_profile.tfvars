@@ -1,0 +1,5 @@
+dcos_version = "1.10.2"
+dcos_install_mode = "upgrade"
+role = "dcos-bootstrap"
+dcos_master_list = "\n - 1.2.3.4\n - 2.3.4.5\n - 4.5.5.6"
+dcos_previous_version_master_index = "1"
