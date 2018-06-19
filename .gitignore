@@ -1,5 +1,8 @@
+*.bak
 .DS_Store
 .terraform
-terraform.tfstate*
-*.bak
-!/*.bak
+terraform.tfstate
+terraform.tfstate.backup
+*.plan
+.terraform.tfstate.lock.info
+desired_cluster_profile.tfvars
