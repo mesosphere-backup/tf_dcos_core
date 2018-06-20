@@ -16,15 +16,30 @@ mv terraform .tf_dcos_core/terraform
 cd .tf_dcos_core
 export TERRAFORM_PATH=${PWD}/terraform
 ${TERRAFORM_PATH} init
-for dir in ./dcos-versions/*
+# Open DC/OS Check
+for dir in ./open/dcos-versions/*
 do
     version=${dir%*/}
     version=${version##*/}
-    for dir2 in ./dcos-versions/${version}/*
+    for dir2 in ./open/dcos-versions/${version}/*
     do
         role=${dir2%*/}
         role=${role##*/}
-        ${TERRAFORM_PATH} validate -var "role=${role}" -var "dcos_version=${version}"
-        ${TERRAFORM_PATH} plan -var "role=${role}" -var "dcos_version=${version}"
+        ${TERRAFORM_PATH} validate -var "dcos_type=open" -var "role=${role}" -var "dcos_version=${version}"
+        ${TERRAFORM_PATH} plan -var "dcos_type=open" -var "role=${role}" -var "dcos_version=${version}"
+    done
+done
+
+# Enterprise DC/OS Check
+for dir in ./ee/dcos-versions/*
+do
+    version=${dir%*/}
+    version=${version##*/}
+    for dir2 in ./ee/dcos-versions/${version}/*
+    do
+        role=${dir2%*/}
+        role=${role##*/}
+        ${TERRAFORM_PATH} validate -var "dcos_type=ee" -var "role=${role}" -var "dcos_version=${version}"
+        ${TERRAFORM_PATH} plan -var "dcos_type=ee" -var "role=${role}" -var "dcos_version=${version}"
     done
 done

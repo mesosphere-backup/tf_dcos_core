@@ -1,28 +1,17 @@
 # DCOS Module
 
-module "open-download-uri" {
-  source = "./open/uri"
-  dcos_version  = "${var.dcos_version}"
-}
-
 module "ee-download-uri" {
-  source = "./ee/uri"
+  source = "./uri"
   dcos_version  = "${var.dcos_version}"
 }
-
-locals {
-dcos_generate_config_path = "${var.dcos_type == "open" ? "${module.open-download-uri.path}" : "${module.ee-download-uri.path}"}"
-}
-
 
 data "template_file" "script" {
-  template = "${file("${path.module}/${var.dcos_type}/dcos-versions/${var.dcos_version}/${var.role}/templates/${var.dcos_install_mode}/run.sh")}"
+  template = "${file("${path.module}/dcos-versions/${var.dcos_version}/${var.role}/templates/${var.dcos_install_mode}/run.sh")}"
 
   vars {
-    dcos_type                                    = "${var.dcos_type}"
     bootstrap_private_ip                         = "${var.bootstrap_private_ip}"
     dcos_bootstrap_port                          = "${var.dcos_bootstrap_port}"
-    dcos_download_path                           = "${coalesce(var.custom_dcos_download_path, local.dcos_generate_config_path)}"
+    dcos_download_path                           = "${coalesce(var.custom_dcos_download_path, module.ee-download-uri.path)}"
     dcos_agent_list                              = "${var.dcos_agent_list}"
     dcos_version                                 = "${var.dcos_version}"
     dcos_audit_logging                           = "${var.dcos_audit_logging}"

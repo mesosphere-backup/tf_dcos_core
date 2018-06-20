@@ -15,7 +15,9 @@ variable "dcos_version" {
   default = "1.9.0"
 }
 
-variable "role" {}
+variable "role" {
+  default = ""
+}
 
 # DCOS bootstrap node variables
 variable "dcos_security" {
