@@ -43,6 +43,7 @@ variable "dcos_download_path" {
    "1.11.5"     = "https://downloads.dcos.io/dcos/stable/1.11.5/dcos_generate_config.sh"
    "1.11.6"     = "https://downloads.dcos.io/dcos/stable/1.11.6/dcos_generate_config.sh"
    "1.11.7"     = "https://downloads.dcos.io/dcos/stable/1.11.7/dcos_generate_config.sh"
+   "1.11.8"     = "https://downloads.dcos.io/dcos/stable/1.11.8/dcos_generate_config.sh"
    "1.12.0"     = "https://downloads.dcos.io/dcos/stable/1.12.0/dcos_generate_config.sh"
    "master"     = "https://downloads.dcos.io/dcos/testing/master/dcos_generate_config.sh"
   }
